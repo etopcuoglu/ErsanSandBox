@@ -18,9 +18,13 @@ public with sharing class ControllerAccountCreate {
     public boolean getisPersonAccount(){
         return isPersonAccount;
     }
-    
+    //sample text add for git hub
     public PageReference saveAccount(){
-        
+        List<PhoneNumber__c> numberList = new List<PhoneNumber__c>();
+        if(Acct.Primary_Phone__c != null){
+            PhoneNumber__c primaryPhone = new PhoneNumber__c();
+            numberList.add(primaryPhone);
+        }
         
         return null;
     }
