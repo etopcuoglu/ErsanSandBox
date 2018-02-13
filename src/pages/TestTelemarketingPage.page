@@ -1,0 +1,11 @@
+<apex:page controller="ControllerTelemarket">
+    <apex:form >
+        <apex:pageBlock > 
+            <apex:pageBlockSection >                
+                <apex:repeat value="{!teleMarketSchedule}" var="dirKey">                
+                    <apex:outputText value="{!dirKey} - {!teleMarketSchedule[dirKey]}" /> <br/>                  
+                </apex:repeat>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

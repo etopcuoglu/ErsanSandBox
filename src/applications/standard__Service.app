@@ -7,6 +7,8 @@
     <tab>standard-Account</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
-    <tab>standard-Chatter</tab>
     <tab>standard-File</tab>
+    <tab>Telemarketing_time__c</tab>
+    <tab>Area_Code__c</tab>
+    <tab>Account_Document__c</tab>
 </CustomApplication>

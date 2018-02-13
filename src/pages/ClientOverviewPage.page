@@ -1,0 +1,12 @@
+<apex:page controller="ControllerClientOverviewPage">
+    <apex:form >
+        <table>
+            <tr>
+                <td><c:AccountOverViewWidget ContactId="0012F000008j8lC"/>
+                </td>
+                <td><c:MetalPriceWidget ></c:MetalPriceWidget>
+                </td>
+            </tr>
+        </table>       
+    </apex:form>
+</apex:page>

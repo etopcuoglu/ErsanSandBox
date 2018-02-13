@@ -1,0 +1,9 @@
+<apex:component controller="ControllerStockPrice">
+    <apex:pageBlock title="Metal Prices">        
+            <apex:pageBlockTable value="{!ListMP}" var="item">
+                <apex:column >
+	                {!item.Name} = ${!item.Price__c}
+                </apex:column>                
+            </apex:pageBlockTable>       
+        </apex:pageBlock>
+</apex:component>

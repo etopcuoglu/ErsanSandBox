@@ -1,0 +1,11 @@
+<apex:page controller="ControllerStockPrice">
+    <apex:form >
+        <apex:pageBlock title="Metal Prices">        
+            <apex:pageBlockTable value="{!ListMP}" var="item">
+                <apex:column >
+	                {!item.Name} = ${!item.Price__c}
+                </apex:column>                
+            </apex:pageBlockTable>       
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -14,9 +14,57 @@
     <tab>standard-ContentNote</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
-    <tab>standard-Feed</tab>
-    <tab>standard-CollaborationGroup</tab>
     <tab>standard-File</tab>
+    <tab>Telemarketing_time__c</tab>
+    <tab>Area_Code__c</tab>
+    <tab>Account_Document__c</tab>
     <uiType>Lightning</uiType>
     <utilityBar>LightningSalesConsole_UtilityBar</utilityBar>
+    <workspaceMappings>
+        <mapping>
+            <tab>Account_Document__c</tab>
+        </mapping>
+        <mapping>
+            <tab>Area_Code__c</tab>
+        </mapping>
+        <mapping>
+            <tab>Telemarketing_time__c</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Account</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Campaign</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Contact</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-ContentNote</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Dashboard</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Event</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-File</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Lead</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Opportunity</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-Task</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-home</tab>
+        </mapping>
+        <mapping>
+            <tab>standard-report</tab>
+        </mapping>
+    </workspaceMappings>
 </CustomApplication>

@@ -1,0 +1,61 @@
+<apex:page standardController="Account" extensions="ControllerCreatePersonAccount" showHeader="true">
+<apex:messages />
+    <apex:form >
+        <apex:pageBlock title="Duplicate Records" rendered="{!IF(hasDuplicateResult,true,false)}">
+            <apex:pageBlockButtons rendered="{!$Profile.Name == 'System Administrator'}">
+                <apex:commandButton value="Save (Ignore Alert)" action="{!saveandignore}"/>
+                <apex:commandButton value="Save and New (Ignore Alert)" action="{!SaveAndNew}"/>
+                <apex:commandButton value="Cancel" action="{!Cancel}"/>
+            </apex:pageBlockButtons>
+            <div style="text-align:center;font-size: 14px;">
+                <apex:outputText value="{!errorDuplicateText}" id="noof" style="font-weight:bold; color:Red;" escape="false"/>
+            </div>
+            <apex:pageBlockTable value="{!duplicateRecords}" var="item">
+                <apex:column >
+                    <apex:facet name="header">Name</apex:facet>
+                    <apex:outputLink value="/{!item['Id']}" target="_blank">{!item['Name']}</apex:outputLink>
+                </apex:column>                
+                <apex:column >
+                    <apex:facet name="header">Phone</apex:facet>
+                    <apex:outputLink value="/{!item['Id']}" target="_blank">{!item['Phone']}</apex:outputLink>
+                </apex:column>
+                <apex:column >
+                    <apex:facet name="header">Email</apex:facet>
+                    <apex:outputLink value="/{!item['Id']}" target="_blank">{!item['PersonEmail']}</apex:outputLink>
+                </apex:column> 
+                <apex:column >
+                    <apex:facet name="header">Address</apex:facet>
+                    <apex:outputLink value="/{!item['Id']}" target="_blank">{!item['BillingStreet']} {!item['BillingCity']} 
+                    {!item['BillingState']} {!item['BillingPostalCode']} {!item['BillingCountry']}</apex:outputLink>
+                </apex:column> 
+                <apex:column >
+                    <apex:facet name="header">Last Modified Date</apex:facet>                    
+                    <apex:outputText value="{0,date,MM/dd/yyyy hh:mm a}">
+                        <apex:param value="{!item['LastModifiedDate']}" />
+                    </apex:outputText>                 
+                </apex:column>
+            </apex:pageBlockTable> 
+        </apex:pageBlock>
+        <apex:pageBlock id="pgBlock" mode="edit" title="Person Account Create">
+            <apex:pageBlockButtons location="both" rendered="{!IF(hasDuplicateResult,false,true)}">
+                <apex:commandButton value="Save" action="{!save}" />
+                <apex:commandButton value="Cancel" action="{!Cancel}"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection id="pgBlockSectionAcctInfo" title="Contact Information" collapsible="false" columns="2"  >   
+                
+                <apex:inputText value="{!Account.Salutation}" />
+                
+                <apex:inputText id="firstName" value="{!Account.FirstName}" />
+                <apex:inputText id="lastName" value="{!Account.LastName}" />
+                <apex:inputField id="Phone" value="{!Account.Phone}"/>                
+                <apex:inputText id="email" value="{!Account.PersonEmail}" />
+                <apex:inputText id="street" value="{!Account.BillingStreet}"/>
+                <apex:inputText id="city" value="{!Account.BillingCity}"/>
+                <apex:inputText id="state" value="{!Account.BillingState}"/>
+                <apex:inputText id="postalcode" value="{!Account.BillingPostalCode}"/>
+                <apex:inputText id="country" value="{!Account.BillingCountry}"/>
+                <apex:inputText id="accountNumber" value="{!Account.AccountNumber}" />
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

@@ -173,7 +173,19 @@
     <tab>standard-Case</tab>
     <tab>standard-Opportunity</tab>
     <tab>standard-Lead</tab>
+    <tab>Telemarketing_time__c</tab>
+    <tab>Area_Code__c</tab>
+    <tab>Account_Document__c</tab>
     <workspaceMappings>
+        <mapping>
+            <tab>Account_Document__c</tab>
+        </mapping>
+        <mapping>
+            <tab>Area_Code__c</tab>
+        </mapping>
+        <mapping>
+            <tab>Telemarketing_time__c</tab>
+        </mapping>
         <mapping>
             <tab>standard-Account</tab>
         </mapping>

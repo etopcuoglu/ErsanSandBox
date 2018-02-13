@@ -1,0 +1,63 @@
+<apex:page standardController="Account" extensions="ControllerAccountCreate" showHeader="true" tabStyle="account">
+    <apex:form >
+        <apex:pageBlock title="{!PageTittle}" mode="edit">
+            <apex:pageBlockButtons id="pgBlockSectionAcctInfo" location="top" >  
+                <apex:commandButton action="{!save}" value="Save" />        
+                <apex:commandButton action="{!cancel}" value="Cancel" />
+                <apex:commandButton action="{!saveAccount}" value="saveAccount" />
+                
+            </apex:pageBlockButtons>
+             <apex:pageBlockSection columns="2" title="Person" collapsible="false" rendered="{!isPersonAccount}"> 
+                <apex:inputField value="{!Acct.Salutation }"/>
+                <apex:inputField label="Primary Phone" value="{! Acct.Phone}"/>
+                <apex:inputField value="{! Acct.PersonContact.FirstName }"/>
+                <apex:inputField label="Business Phone" value="{! Acct.PersonOtherPhone}"/>
+                <apex:inputField value="{! Acct.MiddleName }"/>
+                <apex:inputField label="Mobile Phone" value="{! Acct.PersonMobilePhone}"/>
+                <apex:inputField value="{! Acct.LastName }"/>
+                <apex:inputField label="Primary E-Mail" value="{! Acct.Email__c }"/>
+                <apex:inputField label="Secondary Approver" value="{! Acct.Secondary_Approver__c }"/>
+                <apex:inputField label="Secondary E-mail" value="{! Acct.Secondary_Email__c }"/>     
+                <apex:inputField label="Tertiary Approver" value="{! Acct.Tertiary_Approver__c }"/>
+                
+                <apex:inputField value="{! Acct.Account_Status__c }"/>
+                
+                <apex:inputField value="{!Acct.Last_Conversation_Date__c}"/>                
+                <apex:pageBlockSectionItem />                 
+            </apex:pageBlockSection>
+            <apex:pageBlockSection columns="2" title="Non Person"  collapsible="false" rendered="{! if(isPersonAccount,false,true)}">            
+                <apex:inputField label="Account Name" value="{!Acct.Name}"/> 
+                <apex:inputField label="Primary Phone" value="{! Acct.Primary_Phone__c}"/>
+                <apex:inputField label="Secondary Approver" value="{! Acct.Secondary_Approver__c }"/>
+                <apex:inputField label="Business Phone" value="{! Acct.Business_Phone__c}"/>
+                <apex:inputField label="Third Approver" value="{! Acct.Third_Approver__c }"/>
+                <apex:inputField label="Mobile Phone" value="{! Acct.Mobile_Phone__c}"/>
+                <apex:inputField value="{! Acct.Account_Status__c }"/>                  
+                <apex:inputField label="Primary E-Mail" value="{! Acct.Primary_Email__pc }"/>
+                <apex:pageBlockSectionItem />
+                <apex:inputField label="Secondary E-mail" value="{! Acct.Secondary_Email__pc }"/>                                  
+                <apex:pageBlockSectionItem />
+                <apex:inputField value="{! Acct.Fax }"/>                                  
+            </apex:pageBlockSection> 
+        </apex:pageBlock>
+        <apex:pageBlock title="Address">
+            <apex:pageBlockSection columns="2" collapsible="false"> 
+                <apex:inputField value="{! Account.BillingStreet }" />
+                <apex:inputField value="{! Account.BillingCity }"/>
+                <apex:inputField value="{! Account.BillingStateCode }"/>        
+                <apex:inputField value="{! Account.BillingPostalCode }"/>        
+                <apex:inputField value="{! Account.BillingCountryCode }"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>                 
+        <apex:pageBlock title="Personal Information" rendered="{!isPersonAccount}">
+            <apex:pageBlockSection >
+                <apex:inputField value="{! Account.Gender__c }" />  
+                <apex:inputField label="Birthday" value="{! Account.Birthdate__c }" />
+                <apex:inputField value="{! Account.Marital_Status__c }" />
+                <apex:inputField value="{! Account.Anniversary__c }" />                
+                <apex:inputField value="{! Account.Spouse_Name__c }" />
+                <apex:inputField value="{! Account.SSN__c }" />                
+            </apex:pageBlockSection>
+        </apex:pageBlock>            
+    </apex:form>
+</apex:page>

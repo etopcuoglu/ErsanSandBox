@@ -1,0 +1,52 @@
+<apex:page standardController="Account" extensions="ControllerPhoneCallPage" action="{!MakeCall}">
+
+    <font size="4"><strong>Phone Call To {!Account.Name}</strong></font>
+    <br/><br/><br/>
+
+    
+    <!--<center>
+        <apex:form >
+            <apex:commandButton style="float:centre" action="{!MakeCall}" value="Retry Same Number" />
+        </apex:form>
+    </center>
+    <br/>-->
+    
+    <apex:pageBlock title="Past Activity">
+        <apex:pageBlockSection >
+            <apex:relatedList list="ActivityHistories" title="Past" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock title="Comments and Disposition">
+        <apex:pageBlockSection >
+            <apex:form >
+                <center>
+                <apex:inputTextarea value="{!taskComments}" cols="50" rows="5" />
+                    <br/><br/>
+                <apex:commandButton action="{!CompleteCallTask}" value="Had Conversation" rerender="block" >
+                    <apex:param name="callDisposition" value="Conversation" />
+                </apex:commandButton>
+                <apex:commandButton action="{!CompleteCallTask}" value="Invalid Number" rerender="block" >
+                    <apex:param name="callDisposition" value="Invalid Number" />
+                </apex:commandButton>
+                <apex:commandButton action="{!CompleteCallTask}" value="Left a Message" rerender="block" >
+                    <apex:param name="callDisposition" value="Left Message" />
+                </apex:commandButton>
+                <apex:commandButton action="{!CompleteCallTask}" value="No Answer" rerender="block" >
+                    <apex:param name="callDisposition" value="No Answer" />
+                </apex:commandButton>
+                <apex:commandButton action="{!CompleteCallTask}" value="Other" rerender="block" >
+                    <apex:param name="callDisposition" value="Other" />
+                </apex:commandButton>
+                </center>
+            </apex:form>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    
+    <apex:pageBlock title="(Create) Future Activities">
+        <apex:pageBlockSection >
+            <apex:relatedList list="OpenActivities" title="" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+
+</apex:page>

@@ -1,0 +1,19 @@
+<apex:page standardController="Task" extensions="ControllerTaskList">
+
+  <font size="5">Today's Call List</font> <font size="3">for {!$User.FirstName} {!$User.LastName}:</font>
+  
+  <apex:pageBlock >
+      <apex:PageBlockTable value="{!TodaysCallTasks}" var="task">
+          <apex:column headerValue="Task ID"><apex:outputLink value="{!URLFOR($Action.Task.View, task.id)}">{!task.Id}</apex:outputLink></apex:column>
+          <apex:column headerValue="Account" value="{!task.What.Name}" />
+          <apex:column headerValue="Task Due Date" value="{!task.ActivityDate}" />
+          <apex:column headerValue="Task Status" value="{!task.Status}" />
+          <apex:column headerValue="Task Subject" value="{!task.Subject}" />
+          <apex:column headerValue="Call Disposition, if Any" value="{!task.Call_Disposition__c}" />
+          <apex:column headerValue=""><apex:outputLink value="apex/PhoneListPage"><font size="4" color="red">Call</font>
+              <apex:param name="taskId" value="{!task.Id}"/></apex:outputLink>
+          </apex:column>
+       </apex:pageBlockTable> 
+   </apex:pageBlock>
+   
+</apex:page>

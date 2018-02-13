@@ -1,0 +1,32 @@
+<apex:page standardController="Account" extensions="ControllerPhoneList">
+
+  <h1>Phone Numbers for {!accountName}</h1>
+  
+  <apex:pageBlock >
+      <apex:pageBlockSection >
+          <apex:PageBlockTable value="{!phoneNumberList}" var="phoneNumber">
+              <apex:column headerValue="Phone Number" >
+                  <!--<apex:outputLink value="{!CallNumber}">{!phoneNumber.Number__c}-->
+                  <apex:outputLink value="apex/PhoneCallPage">{!phoneNumber.Phone_Number__r.Phone_Number__c}
+                      <apex:param name="id" value="{!accountID}"/>
+                      <apex:param name="accountID" value="{!accountID}"/>
+                      <apex:param name="phoneId" value="{!phoneNumber.Id}"/>
+                      <apex:param name="phoneNumber" value="{!phoneNumber.Phone_Number__r.Phone_Number__c}"/>
+                      <apex:param name="taskId" value="{!theTask.Id}"/>
+                      <apex:param name="originalTasksSubject" value="{!subjectForNewTaskFromOldTaskIfNeeded}"/>
+                  </apex:outputLink>
+              </apex:column>
+              <apex:column value="{!phoneNumber.Phone_Number_Type__c}" headerValue="Type" />
+              <apex:column headerValue="Primary" >
+                  <apex:outputField value="{!phoneNumber.Is_Primary_Phone_del__c}"/>
+              </apex:column>
+           </apex:pageBlockTable> 
+       </apex:pageBlockSection>
+   </apex:pageBlock>
+   <apex:pageBlock title="Past Activity">
+        <apex:pageBlockSection >
+            <apex:relatedList list="ActivityHistories" title="Past" />
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+   
+</apex:page>

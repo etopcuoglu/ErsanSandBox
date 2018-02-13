@@ -7,9 +7,11 @@
     <tab>standard-Opportunity</tab>
     <tab>standard-report</tab>
     <tab>standard-Dashboard</tab>
-    <tab>standard-Chatter</tab>
     <tab>standard-File</tab>
     <tab>standard-Product2</tab>
     <tab>standard-Forecasting3</tab>
     <tab>standard-Quote</tab>
+    <tab>Telemarketing_time__c</tab>
+    <tab>Area_Code__c</tab>
+    <tab>Account_Document__c</tab>
 </CustomApplication>

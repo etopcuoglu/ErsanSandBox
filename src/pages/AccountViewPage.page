@@ -1,0 +1,214 @@
+<apex:page standardController="Account" extensions="ControllerAccountView" tabStyle="Account" >
+    <apex:stylesheet value="{! $Resource.menuButtonAction}"/>
+    <apex:includeScript value="{!$Resource.jQuery}"/>
+    <apex:includeScript value="{! $Resource.Menubutton}"/>
+    <apex:includeScript value="{! $Resource.MenuItemAction}"/>
+    <apex:includeScript value="{! $Resource.PopupMenuAction}"/>
+    <script>
+    $(document).ready(function(){
+        var field = $(".customerPin")
+        field.val(field.val().replace(/,/g , ''));
+        field.disabled = true;
+    });
+    
+    function MovementReport(){ 
+        var reportUrl ='http://{!ReportPath}/ReportServer/Pages/ReportViewer.aspx?/AE/Customer+Financial+Movement&rs:Command=Render&oId={!Acct.CRM_Account_GUID__c}';
+        window.open(reportUrl);          
+    }
+    
+    function ComissionReport(){
+        var reportUrl ='http://{!ReportPath}/ReportServer/Pages/ReportViewer.aspx?/AE/OrderHistory&rs:Command=Render&oId={!Acct.CRM_Account_GUID__c}';
+        window.open(reportUrl);      
+    }
+    
+    function DeliveryReport(){
+        var reportUrl ='http://{!ReportPath}/ReportServer/Pages/ReportViewer.aspx?/AE/Customer+Delivery+Report&rs:Command=Render&Contactid={!Acct.CRM_Account_GUID__c}';
+        window.open(reportUrl);      
+    }       
+    
+    function MetalMovementReport(){ 
+        var reportUrl ='http://{!ReportPath}/ReportServer/Pages/ReportViewer.aspx?/AE/CustomerMetalMovement&rs:Command=Render&oId={!Acct.CRM_Account_GUID__c}';
+        window.open(reportUrl);          
+    }
+    </script> 
+    <apex:form >       
+        <apex:pageBlock title="{!Acct.RecordType.Name}">
+            <apex:pageBlockButtons id="pgBlockSectionAcctInfo" location="top" >  
+                <table>
+                    <tbody>
+                        <tr>                            
+                            <td >
+                                <div class="menu_SF_button">
+                                    <apex:commandButton action="{!saveAccount}" value="Save" />                                   
+                                    <apex:commandButton action="{!setParams}" rerender="newWindow" value="Movement Report"  onComplete="MovementReport();" />
+                                    <apex:commandButton action="{!setParams}" rerender="newWindow" value="Delivery Report"  onComplete="DeliveryReport();" />
+                                    <apex:commandButton action="{!setParams}" rerender="newWindow" value="Comission Report"  onComplete="ComissionReport();" />              
+                                    <apex:commandButton action="{!setParams}" rerender="newWindow" value="Metal Movement Report"  onComplete="MetalMovementReport();" />                                                  
+                                </div>                                                               
+                            </td>
+                            <td >
+                                <!-- <div id="ex1">                    -->
+                                <div class="menu_button" style="{!IF(!Acct.IsPersonAccount,'visibility:hidden','visibility:false')}">
+                                    <button id="menubutton1" aria-haspopup="true" aria-expanded="false" aria-controls="menu1">
+                                        Convert Account Record Type 
+                                    </button>
+                                    <ul id="menu1"  role="menu" aria-labelledby="menubutton1">
+                                        <!--  <li role="menuitem">
+<a href="/apex/AccountConvertPage?RecordType={!AccumulationTypeId}&AcctId={!AccountId}&event=Accumulation">To Accumulation</a>
+</li> -->
+                                        <li role="menuitem">
+                                            <a href="/apex/AccountConvertPage?RecordType={!TrustTypeId}&AcctId={!AccountId}&event=Trust">Trust Account</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a href="/apex/AccountConvertPage?RecordType={!EstateTypeId}&AcctId={!AccountId}&event=Estate">Estate Account</a>
+                                        </li>
+                                        <li role="menuitem">
+                                            <a href="/apex/AccountConvertPage?RecordType={!BusinessTypeId}&AcctId={!AccountId}&event=Business">Business Account</a>
+                                        </li>
+                                    </ul>
+                                </div>                                
+                                <script type="text/javascript">
+                                window.onload=function() { var menubutton = new Menubutton(document.getElementById('menubutton1')); menubutton.init(); } 
+                                </script>
+                                <!-- </div> -->
+                            </td>                            
+                        </tr>
+                    </tbody>    
+                </table>
+            </apex:pageBlockButtons>   
+            <apex:pageBlockSection columns="2"  collapsible="false" rendered="{!Acct.IsPersonAccount}">                 
+                <apex:inputField label="Account Owner" value="{!Acct.Owner.Name}"/>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputField value="{! Acct.Account_Number__c}"/>
+                <apex:inputField styleClass="customerPin" value="{!Acct.Customer_PIN__c}" html-disabled="true"/>                                
+                <apex:inputField value="{! Acct.Salutation}"/>
+                <apex:inputField label="Primary Phone" value="{! Acct.Primary_Phone__c}"/>
+                <apex:inputField label="First Name" value="{!Acct.FirstName}"/> 
+                <apex:inputField label="Business Phone" value="{! Acct.Business_Phone__c}"/>
+                <apex:inputField value="{! Acct.MiddleName }"/>
+                <apex:inputField label="Mobile Phone" value="{! Acct.Mobile_Phone__c}"/>
+                <apex:inputField value="{! Acct.PersonContact.LastName }"/>
+                <apex:inputField label="Primary E-Mail" value="{! Acct.Primary_Email__pc }"/>
+                <apex:inputField label="Secondary Approver" value="{! Acct.Secondary_Approver__c }"/>
+                <apex:inputField label="Secondary E-mail" value="{! Acct.Secondary_Email__pc }"/> 
+                <apex:inputField value="{! Acct.Account_Status__c }"/>                
+                <apex:outputField label="Created On" value="{!Acct.CreatedDate}"/>
+                <apex:inputField value="{!Acct.Last_Conversation_Date__c}"/>                
+                <apex:outputField value="{! Acct.Total_Purchases__c }"/>                               
+                <apex:outputField value="{! Acct.Last_Activity_Date__c }"/>
+                <apex:outputField label="Contract Sent" value="{!Acct.Account_Agreement_Sent_Date__c}"/>
+                <apex:outputField value="{! Acct.Last_Activity_Related__c }"/>
+                <apex:outputField label="Contract Executed" value="{!Acct.Account_Agreement_Executed_Date__c}"/>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputField value="{! Acct.Trust_Pilot_Survey_Sent_Date__c }"/>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputField value="{! Acct.Trust_Pilot_Survey_Completed_Date__c }"/>
+            </apex:pageBlockSection> 
+            <!--Other Accounts -->
+            <apex:pageBlockSection columns="2"  collapsible="false" rendered="{!IF(Acct.IsPersonAccount,false,true)}">                 
+                <apex:inputField label="Account Owner" value="{!Acct.Owner.Name}"/>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputField value="{! Acct.Account_Number__c}"/>                
+                <apex:inputField label="Primary Phone" value="{! Acct.Primary_Phone__c}"/>
+                <apex:inputField label="Account Name" value="{!Acct.Name}"/> 
+                <apex:inputField label="Business Phone" value="{! Acct.Business_Phone__c}"/>
+                <apex:inputField label="Secondary Approver" value="{! Acct.Secondary_Approver__c }"/>                
+                <apex:inputField label="Mobile Phone" value="{! Acct.Mobile_Phone__c}"/>
+                <apex:inputField label="Third Approver" value="{! Acct.Third_Approver__c }"/>
+                <apex:inputField label="Primary E-Mail" value="{! Acct.Primary_Email__pc }"/>
+                <apex:inputField value="{! Acct.Account_Status__c }"/>                  
+                <apex:inputField label="Secondary E-mail" value="{! Acct.Secondary_Email__pc }"/> 
+                <apex:inputField value="{!Acct.Last_Conversation_Date__c}"/>                              
+                <apex:outputField label="Created On" value="{!Acct.CreatedDate}"/>
+                <apex:outputField value="{! Acct.Last_Activity_Date__c }"/>
+                <apex:outputField value="{! Acct.Total_Purchases__c }"/>                               
+                <apex:outputField value="{! Acct.Last_Activity_Related__c }"/>
+                <apex:outputField label="Contract Sent" value="{!Acct.Account_Agreement_Sent_Date__c}"/>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputField label="Contract Executed" value="{!Acct.Account_Agreement_Executed_Date__c}"/>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputField value="{! Acct.Trust_Pilot_Survey_Sent_Date__c }"/>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputField value="{! Acct.Trust_Pilot_Survey_Completed_Date__c }"/>
+            </apex:pageBlockSection> 
+        </apex:pageBlock>
+        <apex:pageBlock title="Balances">
+            <apex:pageBlockSection columns="2">
+                <apex:outputField value="{!Acct.Current_Balance__c}"/>
+                <apex:outputField value="{!Acct.Storage_Balance__c}"/>                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Address">
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!setParams}" rerender="newWindow" value="Override" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="2" collapsible="false"> 
+                <apex:inputField value="{! Acct.BillingStreet }"/>
+                <apex:inputField value="{! Acct.BillingCity }"/>
+                <apex:inputField value="{! Acct.BillingStateCode }"/>        
+                <apex:inputField value="{! Acct.BillingPostalCode }"/>        
+                <apex:inputField value="{! Acct.BillingCountryCode }"/>                
+            </apex:pageBlockSection>
+        </apex:pageBlock>  
+        <apex:pageBlock title="Next Purchase Details">
+            <apex:pageBlockSection columns="2">
+                <apex:inputField value="{!Acct.Next_Trade_Date__c}"/>
+                <apex:outputField value="{!Acct.Next_Trade_Expected_Date__c}"/>
+                <apex:inputField value="{!Acct.Next_Trade_Amount__c}"/>
+                <apex:inputField value="{!Acct.Trade_Probability__c}"/>                
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Account Relationships" >
+            <apex:pageBlockButtons location="top">
+                <apex:commandButton action="{!newAccountRelationship}" rerender="newWindow" value="New" />
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection columns="1">
+                <apex:pageBlockTable value="{!AccountRelationships}" var="ar">
+                    <apex:column value="{!ar.Name}"/>
+                    <apex:column value="{!ar.From_Account__c}"/>
+                    <apex:column value="{!ar.To_Account__c}"/>
+                    <apex:column value="{!ar.From_Role__c}"/>                            
+                </apex:pageBlockTable>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Personal Information">
+            <apex:pageBlockSection >
+                <apex:inputField value="{! Acct.Gender__c }" />	
+                <apex:inputField label="Birthday" value="{! Acct.Birthdate__c }" />
+                <apex:inputField value="{! Acct.Marital_Status__c }" />
+                <apex:inputField value="{! Acct.Anniversary__c }" />                
+                <apex:inputField value="{! Acct.Spouse_Name__c }" />
+                <apex:inputField value="{! Acct.Is_Loan__c}"/>               
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Marketing information">
+            <apex:pageBlockSection >
+                <apex:outputLabel >Send Marketing Materials</apex:outputLabel>
+                <apex:outputLabel >Last Date Included in Campaign</apex:outputLabel>
+                <apex:inputField value="{!Acct.Last_Lead_Source__c}"/>
+                <apex:inputField label="E-Mail subscription" value="{!Acct.Email_subscription__c}"/>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+        <apex:pageBlock title="Exact Target">
+            <apex:pageBlockSection >
+                <apex:outputLabel >Last Click Date</apex:outputLabel>
+                <apex:outputLabel >Last Open Date</apex:outputLabel>
+                <apex:outputLabel >Unsubscribe Date</apex:outputLabel>
+                <apex:pageBlockSectionItem /> 
+                <apex:outputLabel >Last Bounce Date</apex:outputLabel>
+                <apex:outputLabel >Last Bounce Type</apex:outputLabel>                
+                <apex:outputLabel >Last Bounce Send</apex:outputLabel>
+                <apex:pageBlockSectionItem /> 
+            </apex:pageBlockSection>
+        </apex:pageBlock>       
+        
+        <apex:pageBlock >            
+            <apex:pageBlockButtons id="pgBlockSectionAcctInfoBottom" location="bottom" > 
+                <apex:commandButton action="{! save }" value="Save" />
+                <apex:commandButton action="{!setParams}" rerender="newWindow" value="Movement Report"  onComplete="MovementReport();" />
+                <apex:commandButton action="{!setParams}" rerender="newWindow" value="Delivery Report"  onComplete="DeliveryReport();" />
+                <apex:commandButton action="{!setParams}" rerender="newWindow" value="Comission Report"  onComplete="ComissionReport();" />               
+            </apex:pageBlockButtons>
+        </apex:pageBlock>                
+    </apex:form>
+</apex:page>

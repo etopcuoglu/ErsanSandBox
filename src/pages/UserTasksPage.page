@@ -1,0 +1,30 @@
+<apex:page standardController="Task" extensions="ControllerTaskList">
+  
+  <!--
+  <apex:form >
+  <apex:commandButton action="{!getNewTaskPage}" value="New Task" />
+  </apex:form>
+  -->
+  
+  <apex:outputLink value="{!URLFOR('QuickTask')}">Create New Task</apex:outputLink>-->
+  
+  <font size="5">All Tasks</font> <font size="3">for {!$User.FirstName} {!$User.LastName}:</font>
+  
+  <apex:pageBlock >
+      <apex:PageBlockTable value="{!AllUsersTasks}" var="task">
+          <apex:column headerValue="Task ID"><apex:outputLink value="{!URLFOR($Action.Task.View, task.id)}">{!task.Id}</apex:outputLink></apex:column>
+          <apex:column headerValue="Account" value="{!task.What.Name}" />
+          <apex:column headerValue="Task Due Date" value="{!task.ActivityDate}" />
+          <apex:column headerValue="Task Status" value="{!task.Status}" />
+          <apex:column headerValue="Task Subject" value="{!task.Subject}" />
+          <apex:column headerValue="Call Disposition, if Any" value="{!task.Call_Disposition__c}" />
+          <apex:column headerValue="">
+              <apex:outputLink value="apex/PhoneListPage"><font size="4" color="red">Call</font>
+                  <apex:param name="id" value="{!task.WhatId}"/>
+                  <apex:param name="taskId" value="{!task.Id}"/>
+              </apex:outputLink>
+          </apex:column>
+       </apex:pageBlockTable>
+   </apex:pageBlock>
+      
+</apex:page>

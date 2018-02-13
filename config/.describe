@@ -66,6 +66,13 @@
             "xmlName": "Queue"
         },
         {
+            "directoryName": "CaseSubjectParticles",
+            "inFolder": false,
+            "metaFile": false,
+            "suffix": "CaseSubjectParticle",
+            "xmlName": "CaseSubjectParticle"
+        },
+        {
             "directoryName": "dataSources",
             "inFolder": false,
             "metaFile": false,
@@ -167,13 +174,6 @@
             "metaFile": false,
             "suffix": "snapshot",
             "xmlName": "AnalyticSnapshot"
-        },
-        {
-            "directoryName": "feedFilters",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "feedFilter",
-            "xmlName": "CustomFeedFilter"
         },
         {
             "directoryName": "layouts",
@@ -330,13 +330,6 @@
             "metaFile": false,
             "suffix": "escalationRules",
             "xmlName": "EscalationRules"
-        },
-        {
-            "directoryName": "postTemplates",
-            "inFolder": false,
-            "metaFile": false,
-            "suffix": "postTemplate",
-            "xmlName": "PostTemplate"
         },
         {
             "directoryName": "approvalProcesses",
@@ -577,6 +570,20 @@
             "xmlName": "SiteDotCom"
         },
         {
+            "directoryName": "networkBranding",
+            "inFolder": false,
+            "metaFile": true,
+            "suffix": "networkBranding",
+            "xmlName": "NetworkBranding"
+        },
+        {
+            "directoryName": "brandingSets",
+            "inFolder": false,
+            "metaFile": false,
+            "suffix": "brandingSet",
+            "xmlName": "BrandingSet"
+        },
+        {
             "directoryName": "campaignInfluenceModels",
             "inFolder": false,
             "metaFile": false,
@@ -638,6 +645,13 @@
             "metaFile": false,
             "suffix": "assistantRecommendationType",
             "xmlName": "AssistantRecommendationType"
+        },
+        {
+            "directoryName": "topicsForObjects",
+            "inFolder": false,
+            "metaFile": false,
+            "suffix": "topicsForObjects",
+            "xmlName": "TopicsForObjects"
         },
         {
             "directoryName": "settings",

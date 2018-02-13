@@ -1,0 +1,24 @@
+<apex:component controller="ControllerClientOverviewPage">
+  <apex:attribute name="contactID" description="Attribute for Contact SF ID."
+                  type="String" required="required" assignTo="{!contactIDValue}"/>
+    <apex:pageBlock title="Client Quick View">     
+     <apex:pageBlockSection collapsible="false" columns="1">
+                <apex:outputLabel >Customer PIN: ????</apex:outputLabel>
+                <apex:outputLabel >Account Number: {!account.AccountNumber}</apex:outputLabel>
+                <apex:outputLabel >Name: {!account.Name}</apex:outputLabel>  
+                <apex:outputLabel >Secondary Approver: ?????</apex:outputLabel>  
+                <apex:outputLabel >State: {!account.BillingState}</apex:outputLabel>
+                <apex:outputLabel >Account Status: {!account.Account_Status__c}</apex:outputLabel>
+                <apex:outputLabel >Has Account Agreement: {!account.Has_Account_Agreement__c}</apex:outputLabel>   
+                <apex:outputLabel >Net Sales: ???</apex:outputLabel>
+                <apex:outputLabel >Exclusive Sales: ???</apex:outputLabel>
+                <apex:outputLabel >Gross Sales: {!account.Gross_Sales__c}</apex:outputLabel>
+                <apex:outputLabel >Current Balance: {!account.Current_Balance__c}</apex:outputLabel>                
+                <apex:outputText value="{0,date,MM/dd/yyyy}">Created Date: <apex:param value="{!account.CreatedDate}" /> </apex:outputText>
+                <apex:outputLabel >E-mail: {!account.PersonEmail}</apex:outputLabel>
+                <br/>
+			    <apex:outputLabel >Owner: {!account.PersonEmail}</apex:outputLabel>
+                <apex:outputLink value="/{!account.ID}" target="_blank">Launch Account Page</apex:outputLink>
+            </apex:pageBlockSection>
+     </apex:pageBlock>
+</apex:component>

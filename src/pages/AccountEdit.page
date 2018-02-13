@@ -1,0 +1,27 @@
+<apex:page standardController="Account" extensions="ControllerViewAccount" showHeader="true">
+    <script>
+    function MovementReport(){ 
+        var reportUrl ='http://{!ReportPath}/ReportServer/Pages/ReportViewer.aspx?/AE/OrderHistory&rs:Command=Render&oId={!CrmGuid}';
+        window.open(reportUrl);          
+    }
+    
+    function ComissionReport(){
+        var reportUrl ='http://{!ReportPath}/ReportServer/Pages/ReportViewer.aspx?/AE/OrderHistory&rs:Command=Render&oId={!CrmGuid}';
+           window.open(reportUrl);      
+    }
+    
+    function DeliveryReport(){
+        var reportUrl ='http://{!ReportPath}/ReportServer/Pages/ReportViewer.aspx?/AE/Customer+Delivery+Report&rs:Command=Render&Contactid={!CrmGuid}';
+           window.open(reportUrl);      
+    }       
+    </script>    
+    <apex:form >    
+        <apex:pageBlock id="pgBlock" mode="edit" title="Account Page">           
+            <apex:pageBlockSection id="pgBlockSectionAcctInfo" title="Contact Information" collapsible="false" columns="2"  >   
+                <apex:commandButton action="{!setParams}" rerender="newWindow" value="Movement Report"  onComplete="MovementReport();" />
+                <apex:commandButton action="{!setParams}" rerender="newWindow" value="Delivery Report"  onComplete="DeliveryReport();" />
+                <apex:commandButton action="{!setParams}" rerender="newWindow" value="Comission Report"  onComplete="ComissionReport();" />               
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
