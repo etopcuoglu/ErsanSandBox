@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Testers can input custom settings for testing purposes only.
+If the Activated checkbox is unchecked, the system ignores these settings and runs in non-test mode.</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>Active__c</fullName>
+        <defaultValue>false</defaultValue>
+        <description>Referenced by code such that, if unchecked, all Environment Test Settings are ignored and the system runs in non-test mode.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Referenced by code such that, if unchecked, all Environment Test Settings are ignored and the system runs in non-test mode.</inlineHelpText>
+        <label>Active</label>
+        <trackTrending>false</trackTrending>
+        <type>Checkbox</type>
+    </fields>
+    <fields>
+        <fullName>Test_Phone_Extension__c</fullName>
+        <description>Users phone extension for test purposes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Users phone extension for test purposes.</inlineHelpText>
+        <label>Test Phone Extension</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <fields>
+        <fullName>Test_Phone_Number__c</fullName>
+        <description>The tester should enter the 10-digit phone number that the system should call for testing purposes.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>The tester should enter the 10-digit phone number that the system should call for testing purposes.</inlineHelpText>
+        <label>Test Phone Number</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Phone</type>
+    </fields>
+    <label>Environment Test Settings</label>
+    <visibility>Public</visibility>
+</CustomObject>

@@ -176,12 +176,20 @@
     <tab>Telemarketing_time__c</tab>
     <tab>Area_Code__c</tab>
     <tab>Account_Document__c</tab>
+    <tab>PhoneNumber__c</tab>
+    <tab>Account_Phone_Relationship__c</tab>
     <workspaceMappings>
         <mapping>
             <tab>Account_Document__c</tab>
         </mapping>
         <mapping>
+            <tab>Account_Phone_Relationship__c</tab>
+        </mapping>
+        <mapping>
             <tab>Area_Code__c</tab>
+        </mapping>
+        <mapping>
+            <tab>PhoneNumber__c</tab>
         </mapping>
         <mapping>
             <tab>Telemarketing_time__c</tab>

@@ -23,5 +23,7 @@
     <tab>Telemarketing_time__c</tab>
     <tab>Area_Code__c</tab>
     <tab>Account_Document__c</tab>
+    <tab>PhoneNumber__c</tab>
+    <tab>Account_Phone_Relationship__c</tab>
     <uiType>Lightning</uiType>
 </CustomApplication>

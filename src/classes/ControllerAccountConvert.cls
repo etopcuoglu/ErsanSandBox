@@ -23,16 +23,13 @@ public class ControllerAccountConvert {
         Account ConvertedAcct = [Select ID, RecordTypeId from Account Where ID =:AccountId];
         ConvertedAcct.RecordtypeId = AccountRecordTypeId;
         
-        system.debug('ConvertedAcct '+ConvertedAcct);
 		string pageLink = '/apex/AccountViewPage?id='+AccountId;
         PageReference page = new  PageReference(pageLink);
 		
 		for(Integer j = 0;j<lstInner.size();j++)
-		{
-            system.debug('AccountConvert '+lstInner[j].AccountConvert);
+		{        
 			lstAcct.add(lstInner[j].AccountConvert);
-		} 
-        system.debug('recordList '+lstAcct);
+		}         
         
         if(lstAcct.size() >0)
         {            

@@ -8,6 +8,7 @@ public with sharing class ControllerAccountView {
     public String EstateTypeId;
     public String BusinessTypeId;
     public List<Account_Relationship__c> AccountRelationships;
+    public List<Account_Phone_Relationship__c> AccountPhoneRelationships;
     
     public ControllerAccountView(ApexPages.StandardController controller){
         Acct = [SELECT Id,
@@ -79,6 +80,12 @@ public with sharing class ControllerAccountView {
         return arList;        
     }
     
+    public List<Account_Phone_Relationship__c> getAccountPhoneRelationships(){        
+    	List<Account_Phone_Relationship__c> arList = new List<Account_Phone_Relationship__c>();            
+        arList = [SELECT Name,Phone_Number_Type__c,Phone_Number__r.Name,Phone_Number__r.Phone_Number_10_Numbers__c,Status__c FROM Account_Phone_Relationship__c where Account__c =: Acct.Id]; 
+        return arList;        
+    }
+    
     public PageReference newAccountRelationship(){
          PageReference page = new  PageReference('/a02/e');
     	 page.setRedirect(true);
@@ -128,4 +135,64 @@ public with sharing class ControllerAccountView {
         }
         return '';
     }
+    
+    
+        public String ConversationType {get;set;}
+//will hold the account records to be saved
+	public List<Account_Convert__c>lstAcct  = new List<Account_Convert__c>();
+	
+	//list of the inner class
+	public List<innerClass> lstInner  {	get;set;	}
+	
+	//will indicate the row to be deleted
+	public String selectedRowIndex{get;set;}	
+	
+	//no. of rows added/records in the inner class list
+	public Integer count = 1;    		
+	//add one more row
+	public void Add()
+	{	
+		count = count+1;
+		addMore();		
+	}
+	
+	/*Begin addMore*/
+	public void addMore()
+	{
+		//call to the iner class constructor
+		innerClass objInnerClass = new innerClass(count,AccountId,ConversationType);
+		
+		//add the record to the inner class list
+        lstInner.add(objInnerClass);    
+       // system.debug('lstInner---->'+lstInner);            
+    }/* end addMore*/
+	
+	/* begin delete */
+	public void Del()
+	{
+		//system.debug('selected row index---->'+selectedRowIndex);
+		lstInner.remove(Integer.valueOf(selectedRowIndex)-1);
+		count = count - 1;
+		
+	}/*End del*/
+/*Inner Class*/
+	public class innerClass
+	{		
+		/*recCount acts as a index for a row. This will be helpful to identify the row to be deleted */
+		public String recCount {get;set;}		
+		public Account_Convert__c AccountConvert {get;set;}
+        
+		/*Inner Class Constructor*/
+		public innerClass(Integer intCount, String AccountId,String ConversationType)
+		{
+			recCount = String.valueOf(intCount);					
+			/*create a new account*/
+			AccountConvert = new Account_Convert__c();
+			AccountConvert.Converted_Account__c = AccountId;
+            AccountConvert.Name = 'Conversion to '+ ConversationType;
+            
+		}/*End Inner class Constructor*/	
+	}/*End inner Class*/
+       
+    
 }

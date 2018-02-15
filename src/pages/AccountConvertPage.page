@@ -1,31 +1,31 @@
 <apex:page StandardController="Account" extensions="ControllerAccountConvert" id="thePage">
-<apex:form >
-<apex:pageblock id="pb" >
-	<apex:pageBlockButtons >
-		<apex:commandbutton value="Add Document" action="{!Add}" rerender="pb1"/>
-		<apex:commandbutton value="Convert Account" action="{!Save}"/>
-        <apex:commandbutton value="Cancel" immediate="true" action="{!goBack}"/>
-	</apex:pageBlockButtons>			
-		<apex:pageblock id="pb1">			
-		<apex:repeat value="{!lstInner}" var="e1" id="therepeat">
-				<apex:panelGrid columns="3">				
-				<apex:panelGrid headerClass="Name">
-					<apex:facet name="header">Del</apex:facet>
-					<apex:commandButton value="X" action="{!Del}" immediate="true" rerender="pb1" rendered="{!IF( e1.recCount !='1',true,false)}">
-						<apex:param name="rowToBeDeleted" value="{!e1.recCount}" assignTo="{!selectedRowIndex}"></apex:param>
-					</apex:commandButton>
-				</apex:panelGrid>					
-				<apex:panelGrid title="SPD" >
-					<apex:facet name="header">Document Name</apex:facet>
-					<apex:inputfield value="{!e1.AccountConvert.Document__c}"/>
-				</apex:panelGrid>				
-				<apex:panelGrid >
-					<apex:facet name="header">Recieved Date</apex:facet>
-					<apex:inputfield value="{!e1.AccountConvert.Document_Received_Date__c}"/>
-				</apex:panelGrid>								
-			</apex:panelgrid>
-		</apex:repeat>
-	</apex:pageBlock>		
-</apex:pageblock>
-</apex:form>
+    <apex:form >
+        <apex:pageblock id="pb" >
+            <apex:pageBlockButtons >
+                <apex:commandbutton value="Add Document" action="{!Add}" rerender="pb1"/>
+                <apex:commandbutton value="Convert Account" action="{!Save}"/>
+                <apex:commandbutton value="Cancel" immediate="true" action="{!goBack}"/>
+            </apex:pageBlockButtons>			
+            <apex:pageblock id="pb1">			
+                <apex:repeat value="{!lstInner}" var="e1" id="therepeat">
+                    <apex:panelGrid columns="3">				
+                        <apex:panelGrid headerClass="Name">
+                            <apex:facet name="header">Del</apex:facet>
+                            <apex:commandButton value="X" action="{!Del}" immediate="true" rerender="pb1" rendered="{!IF( e1.recCount !='1',true,false)}">
+                                <apex:param name="rowToBeDeleted" value="{!e1.recCount}" assignTo="{!selectedRowIndex}"></apex:param>
+                            </apex:commandButton>
+                        </apex:panelGrid>					
+                        <apex:panelGrid title="SPD" >
+                            <apex:facet name="header">Document Name</apex:facet>
+                            <apex:inputfield value="{!e1.AccountConvert.Document__c}"/>
+                        </apex:panelGrid>				
+                        <apex:panelGrid >
+                            <apex:facet name="header">Recieved Date</apex:facet>
+                            <apex:inputfield value="{!e1.AccountConvert.Document_Received_Date__c}"/>
+                        </apex:panelGrid>								
+                    </apex:panelgrid>
+                </apex:repeat>
+            </apex:pageBlock>		
+        </apex:pageblock>
+    </apex:form>
 </apex:page>
